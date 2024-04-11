@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.exam.MainController"
+            prefWidth="800" prefHeight="600">
+
+    <top>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Label text="Добавление заявки" />
+            <TextField fx:id="txtNumber" promptText="Номер заявки" />
+            <DatePicker fx:id="datePicker" promptText="Дата добавления" />
+            <TextField fx:id="txtEquipment" promptText="Оборудование" />
+            <TextField fx:id="txtFaultType" promptText="Тип неисправности" />
+            <TextField fx:id="txtDescription" promptText="Описание проблемы" />
+            <TextField fx:id="txtClient" promptText="Клиент" />
+            <ChoiceBox fx:id="statusChoiceBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="В ожидании" />
+                        <String fx:value="В работе" />
+                        <String fx:value="Выполнено" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <Button text="Добавить" onAction="#addRequest" />
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tableView">
+            <columns>
+                <TableColumn text="Номер заявки" fx:id="colNumber" prefWidth="100" />
+                <TableColumn text="Дата добавления" fx:id="colDate" prefWidth="100" />
+                <TableColumn text="Оборудование" fx:id="colEquipmentType" prefWidth="100" />
+                <TableColumn text="Тип неисправности" fx:id="colFaultType" prefWidth="100" />
+                <TableColumn text="Описание проблемы" fx:id="colDescription" prefWidth="200" />
+                <TableColumn text="Клиент" fx:id="colClientFullName" prefWidth="100" />
+                <TableColumn text="Статус" fx:id="colStatus" prefWidth="100" />
+                <TableColumn text="Исполнитель" fx:id="colAssignee" prefWidth="100" />
+                <TableColumn text="Комментарии" fx:id="colComments" prefWidth="200" />
+                <TableColumn text="Приоритет" fx:id="colPriority" prefWidth="100" />
+                <TableColumn text="Дата завершения" fx:id="colCompletionDate" prefWidth="100" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Button text="Редактировать" onAction="#editRequestHandler" />
+            <Button text="Удалить" onAction="#deleteRequestHandler" />
+            <Button text="Поиск" onAction="#searchRequestHandler" />
+            <TextField fx:id="searchField" promptText="Поиск по номеру или параметрам" />
+            <Button text="Обновить" onAction="#refreshTableHandler" />
+            <Button text="Расчет статистики" onAction="#calculateStatisticsHandler" />
+            <Button text="Добавить комментарий" onAction="#addCommentHandler" />
+        </HBox>
+    </bottom>
+</BorderPane>
